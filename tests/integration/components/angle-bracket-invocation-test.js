@@ -107,6 +107,14 @@ module('Integration | Component | angle-bracket-invocation', function(hooks) {
       assert.dom('h2').hasText("rwjblue's component");
       assert.dom('p').hasText('Contents');
     });
+
+    test('slash component names', async function(assert) {
+      this.owner.register('template:components/foo/bar', hbs`<p>yo dawg</p>`);
+
+      await render(hbs`<Foo.Bar />`);
+
+      assert.dom('*').hasText('yo dawg');
+    });
   });
 
   module('dynamic component support', function() {
